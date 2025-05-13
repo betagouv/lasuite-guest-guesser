@@ -8,3 +8,5 @@ NATURE_JURIDIQUE_COLLECTIVITES = {
     "7313", #Section de commune 
     "7314", #Ensemble urbain
 }
+
+RECHERCHE_ENTREPRISE_API_BASE_URL = "https://recherche-entreprises.api.gouv.fr"
