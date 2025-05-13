@@ -14,8 +14,8 @@ class Entreprise:
         self.collectivite_territoriale = None
         self.service_public = None
         self.l100_3 = None
-        self.infos = self._fetch_infos()
         self.source = None
+        self.infos = self._fetch_infos()
 
     def __repr__(self):
         return f"""Entreprise(
@@ -26,6 +26,16 @@ class Entreprise:
         collectivite_territoriale={self.collectivite_territoriale}
 ) source: {self.source}
 """
+    def to_dict(self):
+        return {
+            "nom": self.nom,
+            "siret": self.siret,
+            "siren": self.siren,
+            "service_public": self.service_public,
+            "l100_3": self.l100_3,
+            "collectivite_territoriale": self.collectivite_territoriale,
+            "source": self.source
+        }
 
     def _fetch_infos(self):
         try:
@@ -39,7 +49,6 @@ class Entreprise:
             logging.warning(f"API lookup failed: {e}")
             logging.info(f"Falling back to local lookup for SIRET: {self.siret}")
             infos = self._lookup_locally()
-            print(infos)
             self.nom = infos.get("nom")
             self.l100_3 = infos.get("est_l100_3", False)
             self.service_public = infos.get("est_service_public", False)
