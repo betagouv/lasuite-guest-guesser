@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 
+from app.access_manager import LaSuiteAccessManager
 from app.entreprise import Entreprise
 
 api = FastAPI(title="La Suite Guest API",
@@ -25,3 +26,13 @@ def get_siret_info(siret: str):
     """
     entreprise = Entreprise(siret)
     return entreprise.to_dict()
+
+@api.get("/access/{siret}")
+def get_access_info(siret: str):
+    """
+    Endpoint to fetch access level for a given SIRET or SIREN number.
+    """
+    entreprise = Entreprise(siret)
+    access_manager = LaSuiteAccessManager()
+    access_level = access_manager.check_access(entreprise)
+    return {"access_level": access_level}
