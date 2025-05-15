@@ -8,6 +8,7 @@ test_data = [
     ("13002526500013", True, True, False), # DINUM
     ("059804062", True, False, False), # Régie des Transports Métropolitains
     ("130000805", True, False, False), # GIP Prevention Protection Judiciaire Jeunesse
+    ("18310907300027", True, False, False), # GIP Inclusion
     ("54205118000066", False, False, False), # TotalEnergies
 ]
 
