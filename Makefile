@@ -12,5 +12,15 @@ test:
 	@pytest --maxfail=1 --disable-warnings
 	@echo "Tests completed."
 
+build_image:
+	@echo "Building Docker image"
+	@docker build -t lasuite/guestguesser .
+	@echo "Docker image built."
+
+run_docker:
+	@echo "Running Docker container"
+	@docker run -p 9090:80 lasuite/guestguesser
+	@echo "Docker container running on port 9090."
+
 .PHONY: init download_l100_3_data test
 export PYTHONPATH=.
